@@ -64,6 +64,9 @@ def plot_values(w_start, w_end, parameters):
     ax.plot(real_list, imag_list, marker='.', picker=True, pickradius=5)
     ax.set_xlim([-10, max(real_list) + 50])
     ax.set_ylim(tuple([-1 * i for i in plt.xlim()]))
+    ax.set_title("Nyquist Plot")
+    ax.set_xlabel("Z\' (Ω)")
+    ax.set_ylabel('-Z" (Ω)')
 
     # annotation used to show data on click
     annot = ax.annotate("", xy=(0,0), xytext=(20,20),
@@ -82,7 +85,7 @@ def plot_values(w_start, w_end, parameters):
             ind = event.ind[0]
             real = round(xdata[ind], 2)
             imag = round(ydata[ind], 2)
-            freq = round(freq_list[ind]*2*np.pi, 2)
+            freq = round(freq_list[ind]/(2*np.pi), 2)
 
             annot.xy = [xdata[ind], ydata[ind]]
             text = f'Z\' = {real:<5} Ω\nZ" = {imag:<6} Ω\nω = {freq:<9} Hz'
